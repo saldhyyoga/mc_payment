@@ -6,8 +6,7 @@ const Connection = new sqlite.Database(dbsource, (err) => {
     console.log(err.message);
     throw err;
   } else {
-    console.log('Connected to the sqlite')
-
+    console.log('Connected to the sqlite');
   }
 })
 
