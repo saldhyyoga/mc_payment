@@ -14,7 +14,13 @@ exports.setupDatabase = async (req, res) => {
           console.log(err.message);
           throw err.message;
         }
-        console.log('user inserted')
+        console.log('user inserted');
+        Connection.get(`SELECT * FROM user`, (err, row) =>{
+          if(err){
+            console.log(err)
+          }
+          console.log(row);
+        });
       })
       console.log('table user created');
     });
@@ -34,9 +40,10 @@ exports.setupDatabase = async (req, res) => {
       }
       console.log('table type_history created');
     });
-    
+
     response.success('initial setup database success', res);
   } catch (error) {
+    console.log(error);
     response.error(error, res);
   }
 }
