@@ -21,8 +21,29 @@ exports.setupDatabase = async (req, res) => {
           }
           console.log(row);
         });
-      })
-      console.log('table user created');
+      });
+
+      Connection.run(sqlquery.InsertIncome, err => {
+        if (err) {
+          console.log(err.message);
+          throw err.message;
+        }
+        console.log('income inserted');
+      });
+      Connection.run(sqlquery.InsertExpenses, err => {
+        if (err) {
+          console.log(err.message);
+          throw err.message;
+        }
+        console.log('expenses inserted');
+        Connection.run(sqlquery.UpdateSaldo, err => {
+          if (err) {
+            console.log(err.message);
+            throw err.message;
+          }
+          console.log('update saldo');
+        })
+      });
     });
 
     Connection.run(sqlquery.CreateTableHistory, err => {

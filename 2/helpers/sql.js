@@ -26,10 +26,14 @@ const CreateTableHistory = `CREATE TABLE history (
   FOREIGN KEY(type) REFERENCES type_history(name)
 )`;
 
-// const InsertIncome = `
-// INSERT INTO history VALUES (1, 'income', 100000, 'uang harian', DateTime('now'));
-// INSERT INTO history VALUES (1, 'expenses', 50000, 'beli makan', DateTime('now'));
-// `;
+const InsertIncome = `
+INSERT INTO history VALUES (1, 1, 'income', 100000, 'uang harian', DateTime('now'));
+`;
+
+const InsertExpenses = `
+INSERT INTO history VALUES (2, 1, 'expenses', 50000, 'beli makan', DateTime('now'));`
+
+const UpdateSaldo = `UPDATE user SET saldo = 50000 WHERE id = 1;`
 
 // const UpdateSaldo = `
 // UPDATE user SET saldo = ?
@@ -39,5 +43,8 @@ module.exports = {
   CreateTableUser,
   CreateTableHistory,
   CreateTypeHistory,
-  InsertUser
+  InsertUser,
+  InsertIncome,
+  InsertExpenses,
+  UpdateSaldo
 }
