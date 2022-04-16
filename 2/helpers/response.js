@@ -7,7 +7,6 @@ exports.success = (data, res) => {
 }
 
 exports.error = (message, res, statusCode) => {
-  console.log(message);
   res.status(statusCode || 500).send({
     status: "ERROR",
     message: `${message}`

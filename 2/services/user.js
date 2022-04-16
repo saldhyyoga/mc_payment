@@ -6,11 +6,10 @@ exports.GetUserData = (userId, res) => {
   const params = [userId];
   Connection.get(sql, params, (err, rows) => {
     if (err) {
-      response.error(err, res, 400);
-      return;
+      return response.error(err, res, 400);
     }
     if(!rows){
-      response.error('user not found', res, 404);
+      return response.error('user not found', res, 404);
     }
     return response.success(rows, res);
   });
