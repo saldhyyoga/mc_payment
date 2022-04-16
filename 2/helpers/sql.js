@@ -35,10 +35,6 @@ INSERT INTO history VALUES (2, 1, 'expenses', 50000, 'beli makan', DateTime('now
 
 const UpdateSaldo = `UPDATE user SET saldo = 50000 WHERE id = 1;`
 
-// const UpdateSaldo = `
-// UPDATE user SET saldo = ?
-// `
-
 module.exports = {
   CreateTableUser,
   CreateTableHistory,

@@ -5,7 +5,10 @@ exports.GetHistory = (req, res) => {
   try {
     const type = req.query.type ? req.query.type : null;
     const user_id = req.query.user_id ? req.query.user_id : null;
-    console.log(user_id)
+    
+    if (!user_id) {
+      return response.error('parameter user_id required', res, 400);
+    }
     return historyService.GetHistory({
       type,
       user_id

@@ -2,14 +2,16 @@ const Connection = require('../helpers/database');
 const response = require('../helpers/response');
 
 exports.GetHistory = (params, res) => {
-  if (!params.user_id) {
-    response.error('parameter user_id required', res, 400);
+  let paramSql = [];
+  let sql = '';
+  paramSql.push(parseInt(params.user_id));
+  if (params.type !== null) {
+    sql+= `select * from history WHERE user_id = ? and type = ?`;
+    paramSql.push(params.type);
+  } else {
+    sql = `select * from history WHERE user_id = ?`;
   }
-  let sql = `select * from history`;
-  if (params.type) {
-    sql+= ' where type = ?'
-  };
-  const paramSql = [params.type];
+
   Connection.all(sql, paramSql, (err, rows) => {
     if (err) {
       response.error(err, res, 400);
