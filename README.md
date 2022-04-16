@@ -3,7 +3,6 @@
 There are 2 folder, folder 1 for test number 1 and folder 2 test number 2.
 ## Table of Contents
 
-- [Description
 - [Framework and Library](#frameworkandlibrary)
 - [Getting Started](#getting-started)
   - [Starting Server](#starting-server)
