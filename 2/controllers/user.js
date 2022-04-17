@@ -9,3 +9,15 @@ exports.GetUserData = (req, res) => {
     response.error(error, res);
   }
 }
+
+exports.CreateUser = (req, res) => {
+  try {
+    const params = req.body;
+    if (!params.name) {
+      response.error('name is required', res, 400);
+    }
+    return userService.CreateUser(params, res);
+  } catch (error) {
+    response.error(error, res);
+  }
+} 

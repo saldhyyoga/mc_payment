@@ -1,0 +1,160 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MC Payment Test",
+    "description": "MC Payment Test API Documentation",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/user/${id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get detail user and balance",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "status": "Success",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/history?${user_id}": {
+      "parameters": [
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "description": "User_ID of user that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "History income and expenses"
+        ],
+        "summary": "Get detail history income and expenses from user",
+        "responses": {
+          "200": {
+            "status": "Success",
+            "schema": {
+              "$ref": "#/definitions/History"
+            }
+          }
+        }
+      }
+    },
+    "/history?${user_id}&&type='income/expenses'": {
+      "parameters": [
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "description": "User_ID of user that we want to find",
+          "type": "integer"
+        },
+        {
+          "name": "type",
+          "in": "path",
+          "required": true,
+          "description": "Type of history(income/expenses)",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "History with filter type income or expenses"
+        ],
+        "summary": "Get detail history with filter type income or expenses",
+        "responses": {
+          "200": {
+            "status": "Success",
+            "schema": {
+              "$ref": "#/definitions/History"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "saldo": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "History": {
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "user_id": {
+                "type": "integer"
+              },
+              "type": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "integer"
+              },
+              "description": {
+                "type": "string"
+              },
+              "created_at": {
+                "type": "string"
+              } 
+            }
+          }
+        }
+      }
+    }
+  }
+}
