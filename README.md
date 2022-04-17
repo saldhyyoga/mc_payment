@@ -29,3 +29,8 @@ and then server starting on port 3000
 ```
 npm test
 ```
+
+### Api Documentation
+```
+http://localhost:3000/api-docs
+```
